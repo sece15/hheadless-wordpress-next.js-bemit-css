@@ -37,6 +37,38 @@ if(class_exists('acf')){
             'menu_title' => 'General',
             'parent_slug' => 'theme-settings',
         ));
+
+        acf_add_options_page(array(
+            'page_title' => 'Blocks',
+            'menu_title' => 'Blocks',
+            'menu_slug'  => 'blocks',
+            'capability' => 'edit_posts',
+            'redirect'   =>  true
+        ));
+
+        acf_add_options_sub_page(array(
+            'page_title' => 'Header',
+            'menu_title' => 'Header',
+            'parent_slug' => 'blocks',
+        ));
+
+        acf_add_options_sub_page(array(
+            'page_title' => 'Footer',
+            'menu_title' => 'Footer',
+            'parent_slug' => 'blocks',
+        ));
+
+        acf_add_options_sub_page(array(
+            'page_title' => 'Cookies',
+            'menu_title' => 'Cookies',
+            'parent_slug' => 'blocks',
+        ));
+
+        acf_add_options_sub_page(array(
+            'page_title' => 'About',
+            'menu_title' => 'About',
+            'parent_slug' => 'blocks',
+        ));
     }
 }
 
@@ -129,11 +161,11 @@ if(!function_exists('a_get_custom_post_type_labels')){
             'new_item'             =>sprintf(__('New %s', 'wp-studio-15'), $singular),
             'view'                 =>sprintf(__('View %s', 'wp-studio-15'), $singular),
             'view_item'            =>sprintf(__('View %s', 'wp-studio-15'), $singular),
-            'search_items'         =>sprintf(__('Search %s', 'wp-studio-15'), $plural,
-            'not_found'            =>sprintf(__('%s not found', 'wp-studio-15'), $plural,
-            'not_found_in_trash'   =>sprintf(__('%s not found in trash', 'wp-studio-15'), $plural,
-            'parent'               =>sprintf(__('Parent %s', 'wp-studio-15'), $singular,
+            'search_items'         =>sprintf(__('Search %s', 'wp-studio-15'), $plural),
+            'not_found'            =>sprintf(__('%s not found', 'wp-studio-15'), $plural),
+            'not_found_in_trash'   =>sprintf(__('%s not found in trash', 'wp-studio-15'), $plural),
+            'parent'               =>sprintf(__('Parent %s', 'wp-studio-15'), $singular),
         );
-        retunr $labels;
+        return $labels;
     }
 }
