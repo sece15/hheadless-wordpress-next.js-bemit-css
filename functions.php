@@ -169,3 +169,34 @@ if(!function_exists('a_get_custom_post_type_labels')){
         return $labels;
     }
 }
+
+function a_adjacent_projects($response, $post, $request){
+    global $post;
+
+    $next = get_adjacent_post(false,'',false);
+    $previous = get_adjacent_post(false,'',true);
+
+    $next_post_data = (is_a( $next, 'WP_Post')) ?
+        array(
+            "id" => $next->ID,
+            "title" => $next->post_title,
+            "slug" => $next->post_name
+        )
+        :
+        null;
+
+    $previous_post_data = (is_a($previous, 'WP_Post')) ?
+        array(
+            "id" => $previous->ID,
+            "title" => $previous->post_title,
+            "slug" => $previous->post_name
+        )
+        :
+        null;
+
+    $response->data['next'] = $next_post_data;
+    $response->data['previous'] = $previous_post_data;
+
+    return $response;
+}
+add_filter('rest_prepare_cpt-project','a_adjacent_projects',10,3);
